@@ -5,5 +5,8 @@ const articleController = require("../controllers/article.controller");
 
 router.get("/", articleController.getArticles);
 router.post("/", articleController.postArticle);
+router.get("/:id", articleController.getArticle);
+router.put("/:id", articleController.putArticle);
+router.delete("/:id", articleController.deleteArticle);
 
 module.exports = router;

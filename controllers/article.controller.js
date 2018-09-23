@@ -17,4 +17,31 @@ articleController.postArticle = async(req, res) => {
     });
 };
 
+articleController.getArticle = async(req, res) => {
+    return res.json(await article.findById(req.params.id));
+};
+
+articleController.putArticle = async (req, res) => {
+    await article.update({
+        title: req.body.title,
+        body: req.body.body
+    }, {
+        where: {id: req.params.id}
+    });
+
+    return res.json({
+        "status": "article updated"
+    });
+};
+
+articleController.deleteArticle = async (req, res) => {
+    await article.destroy({
+        where: {id: req.params.id}
+    });
+
+    return res.json({
+        "status": "article deleted"
+    });
+};
+
 module.exports = articleController;
